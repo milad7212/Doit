@@ -12,20 +12,46 @@ import {
   Platform,
   StatusBar,
   SafeAreaView,
+  Dimensions,
 } from "react-native";
+import {
+  useDimensions,
+  useDeviceOrientation,
+} from "@react-native-community/hooks";
 
 export default function App() {
+  console.log(Dimensions.get("window"));
   const handelPress = () => {
     console.log("Text :>> ", "Text");
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <View
-        style={{
-          backgroundColor: "dodgerblue",
-        }}
-      ></View>
-    </SafeAreaView>
+    <>
+      <View style={{ backgroundColor: "#fff", flex: 1 }}>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "dodgerblue",
+            flexDirection: "row",
+          }}
+        >
+          <View style={{ flex: 0.5, backgroundColor: "gold" }}></View>
+        </View>
+        <View
+          style={{ flex: 1, backgroundColor: "dodgerblue", flexDirection: "row" }}
+        >
+          <View style={{ flex: 0.5, backgroundColor: "gold" }}></View>
+        </View>
+        <View
+          style={{
+            flex: 1,
+            backgroundColor: "dodgerblue",
+            flexDirection: "row",
+          }}
+        >
+          <View style={{ flex: 0.5, backgroundColor: "gold" }}></View>
+        </View>
+      </View>
+    </>
   );
 }
 

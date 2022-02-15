@@ -1,23 +1,41 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Alert,
+  TouchableWithoutFeedback,
+  TouchableOpacity,
+  TouchableHighlight,
+  TouchableNativeFeedback,
+  Button,
+  Platform,
+  StatusBar,
+  SafeAreaView,
+} from "react-native";
 
 export default function App() {
+  const handelPress = () => {
+    console.log("Text :>> ", "Text");
+  };
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Milad Hasani Hastam</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View
+        style={{
+          backgroundColor: "dodgerblue",
+        }}
+      ></View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#c1c1c1",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#fff",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   text: {
-    color: "blue",
+    color: "black",
   },
 });

@@ -18,6 +18,7 @@ import {
   useDimensions,
   useDeviceOrientation,
 } from "@react-native-community/hooks";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
 
 export default function App() {
   console.log(Dimensions.get("window"));
@@ -26,31 +27,7 @@ export default function App() {
   };
   return (
     <>
-      <View style={{ backgroundColor: "#fff", flex: 1 }}>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "dodgerblue",
-            flexDirection: "row",
-          }}
-        >
-          <View style={{ flex: 0.5, backgroundColor: "gold" }}></View>
-        </View>
-        <View
-          style={{ flex: 1, backgroundColor: "dodgerblue", flexDirection: "row" }}
-        >
-          <View style={{ flex: 0.5, backgroundColor: "gold" }}></View>
-        </View>
-        <View
-          style={{
-            flex: 1,
-            backgroundColor: "dodgerblue",
-            flexDirection: "row",
-          }}
-        >
-          <View style={{ flex: 0.5, backgroundColor: "gold" }}></View>
-        </View>
-      </View>
+      <WelcomeScreen />
     </>
   );
 }

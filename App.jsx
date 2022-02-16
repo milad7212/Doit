@@ -20,6 +20,7 @@ import {
 } from "@react-native-community/hooks";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
+import AppText from "./app/components/AppText";
 
 export default function App() {
   console.log(Dimensions.get("window"));
@@ -28,7 +29,18 @@ export default function App() {
   };
   return (
     <>
-      <ViewImageScreen />
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: "dodgerblue",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <AppText>
+          Hello
+        </AppText>
+      </View>
     </>
   );
 }
@@ -37,7 +49,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
   },
   text: {
     color: "black",

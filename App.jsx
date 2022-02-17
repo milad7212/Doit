@@ -18,6 +18,7 @@ import {
   useDimensions,
   useDeviceOrientation,
 } from "@react-native-community/hooks";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import AppText from "./app/components/AppText";
@@ -37,9 +38,10 @@ export default function App() {
           alignItems: "center",
         }}
       >
-        <AppText>
-          Hello
-        </AppText>
+        <TouchableOpacity>
+          <MaterialCommunityIcons name="email" size={60} color="red" />
+        </TouchableOpacity>
+        <AppText>milad hasani </AppText>
       </View>
     </>
   );

@@ -22,6 +22,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import WelcomeScreen from "./app/screens/WelcomeScreen";
 import ViewImageScreen from "./app/screens/ViewImageScreen";
 import AppText from "./app/components/AppText";
+import AppButton from "./app/components/AppButton";
 
 export default function App() {
   console.log(Dimensions.get("window"));
@@ -33,15 +34,15 @@ export default function App() {
       <View
         style={{
           flex: 1,
-          backgroundColor: "dodgerblue",
+
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <TouchableOpacity>
-          <MaterialCommunityIcons name="email" size={60} color="red" />
-        </TouchableOpacity>
-        <AppText>milad hasani </AppText>
+        <AppButton
+          title="Login"
+          onPress={() => console.log("tapp :>> ", "tapp")}
+        />
       </View>
     </>
   );

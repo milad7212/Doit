@@ -1,6 +1,7 @@
 import React from "react";
 import { FlatList, StyleSheet } from "react-native";
 import ListItem from "./ListItem";
+import Screen from "./Screen";
 
 const messages = [
   {
@@ -18,17 +19,19 @@ const messages = [
 ];
 function MessagesScreen(props) {
   return (
-    <FlatList
-      data={messages}
-      keyExtractor={(messages) => messages.id.toString()}
-      renderItem={({ item }) => (
-        <ListItem
-          title={item.title}
-          subTitle={item.description}
-          image={item.image}
-        />
-      )}
-    />
+    <Screen>
+      <FlatList
+        data={messages}
+        keyExtractor={(messages) => messages.id.toString()}
+        renderItem={({ item }) => (
+          <ListItem
+            title={item.title}
+            subTitle={item.description}
+            image={item.image}
+          />
+        )}
+      />
+    </Screen>
   );
 }
 const styles = StyleSheet.create({});

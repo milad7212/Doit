@@ -29,23 +29,7 @@ export default function App() {
   const handelPress = () => {
     console.log("Text :>> ", "Text");
   };
-  return (
-    <>
-      <View
-        style={{
-          flex: 1,
-
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <AppButton
-          title="Login"
-          onPress={() => console.log("tapp :>> ", "tapp")}
-        />
-      </View>
-    </>
-  );
+  return <WelcomeScreen />;
 }
 
 const styles = StyleSheet.create({

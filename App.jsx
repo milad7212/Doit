@@ -13,6 +13,7 @@ import {
   StatusBar,
   SafeAreaView,
   Dimensions,
+  TextInput,
 } from "react-native";
 import {
   useDimensions,
@@ -32,9 +33,16 @@ import ListItemDeleteAction from "./app/components/ListItemDeleteAction";
 import ListItem from "./app/components/ListItem";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
+import { useState } from "react";
+import AppTextInput from "./app/components/AppTextInput";
 
 export default function App() {
-  return <ListingsScreen />;
+  const [inputText, setInputText] = useState("");
+  return (
+    <Screen>
+      <AppTextInput placeholder="UserName" icon="email" />
+    </Screen>
+  );
 }
 
 const styles = StyleSheet.create({

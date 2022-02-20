@@ -1,26 +1,57 @@
-import React from "react";
-import { StyleSheet, View } from "react-native";
+import React, { useState } from "react";
+import {
+  Button,
+  FlatList,
+  Modal,
+  StyleSheet,
+  TouchableWithoutFeedback,
+  View,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import defultStlyles from "../config/styles";
 import AppText from "./AppText";
-function AppPicker({ icon, placeholder, ...otherProps }) {
+import PickerItem from "./PickerItem";
+function AppPicker({ icon, items, onSelectItem, placeholder, selectedItem }) {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View style={styles.container}>
-      {icon && (
-        <MaterialCommunityIcons
-          name={icon}
-          size={20}
-          color={defultStlyles.colors.medium}
-          style={styles.icon}
+    <>
+      <TouchableWithoutFeedback onPress={() => setModalVisible(true)}>
+        <View style={styles.container}>
+          {icon && (
+            <MaterialCommunityIcons
+              name={icon}
+              size={20}
+              color={defultStlyles.colors.medium}
+              style={styles.icon}
+            />
+          )}
+          <AppText style={styles.text}>
+            {selectedItem ? selectedItem.label : placeholder}
+          </AppText>
+          <MaterialCommunityIcons
+            name="chevron-down"
+            size={20}
+            color={defultStlyles.colors.medium}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+      <Modal visible={modalVisible} animationType="slide">
+        <Button title="back" onPress={() => setModalVisible(false)} />
+        <FlatList
+          data={items}
+          keyExtractor={(items) => items.value}
+          renderItem={({ item }) => (
+            <PickerItem
+              label={item.label}
+              onPress={() => {
+                setModalVisible(false);
+                onSelectItem(item);
+              }}
+            />
+          )}
         />
-      )}
-      <AppText style={styles.text}>{placeholder}</AppText>
-      <MaterialCommunityIcons
-        name="chevron-down"
-        size={20}
-        color={defultStlyles.colors.medium}
-      />
-    </View>
+      </Modal>
+    </>
   );
 }
 

@@ -13,6 +13,7 @@ function AppTextInput({ icon, ...otherProps }) {
           style={styles.icon}
         />
       )}
+
       <TextInput style={defultStlyles.text} {...otherProps} />
     </View>
   );

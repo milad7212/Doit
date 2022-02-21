@@ -58,25 +58,14 @@ export default function App() {
     requestPermission();
   }, []);
 
-  const selectImage = async () => {
-    try {
-      const result = await ImagePicker.launchImageLibraryAsync();
-      if (!result.cancelled) setImageUri(result.uri);
-    } catch (error) {
-      console.log("Error reading an image :>> ", error);
-    }
-  };
-
   // const [inputText, setInputText] = useState(true);
   // const [category, setCategory] = useState(categories[0]);
   return (
     <Screen>
-      <Button title="select image" onPress={selectImage} />
-      <Image
-        source={{ uri: imageUri }}
-        style={{ width: 200, height: 300, marginTop: 50 }}
+      <ImageInput
+        onChangeImage={(uri) => setImageUri(uri)}
+        imageUri={imageUri}
       />
-      <ImageInput imageUri={imageUri} />
     </Screen>
     // <ListingEditScreen />
     // <MessagesScreen />

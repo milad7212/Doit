@@ -34,11 +34,13 @@ import ListItemDeleteAction from "./app/components/ListItemDeleteAction";
 import ListItem from "./app/components/ListItem";
 import AccountScreen from "./app/screens/AccountScreen";
 import ListingsScreen from "./app/screens/ListingsScreen";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AppTextInput from "./app/components/AppTextInput";
 import AppPicker from "./app/components/AppPicker";
 import LoginScreen from "./app/screens/LoginScreen";
 import ListingEditScreen from "./app/screens/ListingEditScreen";
+import * as ImagePicker from "expo-image-picker";
+import ImageInput from "./app/components/ImageInput";
 
 // const categories = [
 //   { label: "Furniture", value: 1 },
@@ -47,10 +49,36 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 // ];
 
 export default function App() {
+  const [imageUri, setImageUri] = useState();
+  const requestPermission = async () => {
+    const { granted } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!granted) alert("You need to enable permission to access the library");
+  };
+  useEffect(() => {
+    requestPermission();
+  }, []);
+
+  const selectImage = async () => {
+    try {
+      const result = await ImagePicker.launchImageLibraryAsync();
+      if (!result.cancelled) setImageUri(result.uri);
+    } catch (error) {
+      console.log("Error reading an image :>> ", error);
+    }
+  };
+
   // const [inputText, setInputText] = useState(true);
   // const [category, setCategory] = useState(categories[0]);
   return (
-    <ListingEditScreen />
+    <Screen>
+      <Button title="select image" onPress={selectImage} />
+      <Image
+        source={{ uri: imageUri }}
+        style={{ width: 200, height: 300, marginTop: 50 }}
+      />
+      <ImageInput imageUri={imageUri} />
+    </Screen>
+    // <ListingEditScreen />
     // <MessagesScreen />
     // <ListingsScreen />
 

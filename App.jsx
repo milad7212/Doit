@@ -51,6 +51,7 @@ export default function App() {
   // const [category, setCategory] = useState(categories[0]);
   return (
     <ListingEditScreen />
+    // <MessagesScreen />
     // <ListingsScreen />
 
     // <AppTextInput icon="email" placeholder="Email" />

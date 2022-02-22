@@ -42,6 +42,7 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import * as ImagePicker from "expo-image-picker";
 import ImageInput from "./app/components/ImageInput";
 import ImageInputList from "./app/components/ImageInputList";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 // const categories = [
 //   { label: "Furniture", value: 1 },
@@ -50,15 +51,28 @@ import ImageInputList from "./app/components/ImageInputList";
 // ];
 
 export default function App() {
+  const Tweets = () => (
+    <Screen>
+      <Text>Tweets</Text>
+    </Screen>
+  );
+  const TweetDetails = () => (
+    <Screen>
+      <Text>Tweet Details</Text>
+    </Screen>
+  );
+  const Stack = createNativeStackNavigator();
+  const StackNavigator = () => (
+    <Stack.Navigator>
+      <Stack.Screen name="Tweets" component={Tweets} />
+      <Stack.Screen name="TweetDetails" component={Tweets} />
+    </Stack.Navigator>
+  );
   return (
-    // <Screen>
-    //   <ImageInputList
-    //     imageUris={imageUris}
-    //     onAddImage={handleAdd}
-    //     onRemoveImage={handleRemove}
-    //   />
-    // </Screen>
-    <ListingEditScreen />
+    <Screen>
+      <AppText>hi</AppText>
+    </Screen>
+
     // <MessagesScreen />
     // <ListingsScreen />
 

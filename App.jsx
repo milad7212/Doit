@@ -43,7 +43,11 @@ import * as ImagePicker from "expo-image-picker";
 import ImageInput from "./app/components/ImageInput";
 import ImageInputList from "./app/components/ImageInputList";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import navigationTheme from "./app/navigation/navigationTheme";
+import AppNavigator from "./app/navigation/AppNavigator";
 // const categories = [
 //   { label: "Furniture", value: 1 },
 //   { label: "Clothing", value: 2 },
@@ -51,27 +55,80 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // ];
 
 export default function App() {
-  const Tweets = () => (
+  const Link = () => {
+    const navigation = useNavigation();
+    return (
+      <Button
+        title="Click"
+        onPress={() => navigation.navigate("TweetDetails")}
+      />
+    );
+  };
+  const Tweets = ({ navigation }) => (
     <Screen>
       <Text>Tweets</Text>
+      <Button
+        title="View Tweets"
+        onPress={() => navigation.navigate("TweetDetails", { id: 1000 })}
+      />
+      <Link />
     </Screen>
   );
-  const TweetDetails = () => (
+  const TweetDetails = ({ route }) => (
     <Screen>
-      <Text>Tweet Details</Text>
+      <Text>Tweet Details {route.params.id}</Text>
     </Screen>
   );
   const Stack = createNativeStackNavigator();
-  const StackNavigator = () => (
-    <Stack.Navigator>
-      <Stack.Screen name="Tweets" component={Tweets} />
-      <Stack.Screen name="TweetDetails" component={Tweets} />
+  const FeedNavigator = () => (
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "dodgerblue",
+        },
+        headerTintColor: "white",
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="Tweets" component={Tweets} options={{}} />
+      <Stack.Screen
+        name="TweetDetails"
+        component={TweetDetails}
+        options={({ route }) => ({ title: "Milad" })}
+      />
     </Stack.Navigator>
   );
-  return (
+  // ######################___________________###########################
+
+  const Account = () => (
     <Screen>
-      <AppText>hi</AppText>
+      <Text>Account</Text>
     </Screen>
+  );
+
+  const Tab = createBottomTabNavigator();
+  const TabNavigator = () => (
+    <Tab.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: "#e91e63",
+      }}
+    >
+      <Tab.Screen
+        name="Feed"
+        component={FeedNavigator}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <MaterialCommunityIcons name="home" size={size} color={color} />
+          ),
+        }}
+      />
+      <Tab.Screen name="Account" component={Account} />
+    </Tab.Navigator>
+  );
+  return (
+    <NavigationContainer theme={navigationTheme}>
+      <AppNavigator />
+    </NavigationContainer>
 
     // <MessagesScreen />
     // <ListingsScreen />

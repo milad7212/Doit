@@ -79,7 +79,7 @@ function ListingEditScreen() {
 }
 const styles = StyleSheet.create({
   container: {
-    padding: 10,
+    paddingHorizontal: 5,
   },
 });
 export default ListingEditScreen;

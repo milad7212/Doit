@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import Card from "../components/Card";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+import listingsApi from "../api/listings";
 import routes from "../navigation/routes";
+import AppText from "../components/AppText";
+import AppButton from "../components/AppButton";
+import ActivityIndicator from "../components/ActivityIndicator";
+import useApi from "../hooks/useApi";
 
 const listings = [
   {
@@ -33,16 +38,28 @@ const listings = [
 ];
 
 function ListingsScreen({ navigation }) {
+  const getListingsApi = useApi(listingsApi.getListings);
+  useEffect(() => {
+    getListingsApi.request();
+  }, []);
+
   return (
     <Screen style={styles.screen}>
+      {getListingsApi.error && (
+        <>
+          <AppText>نمی توان به لیست ها دسترسی پیداکرد</AppText>
+          <AppButton title="بازنشانی" onPress={loadListings} />
+        </>
+      )}
+      <ActivityIndicator visible={getListingsApi.loading} />
       <FlatList
-        data={listings}
-        keyExtractor={(listing) => listing.id.toString()}
+        data={getListingsApi.data}
+        keyExtractor={(listing) => listing.Slug}
         renderItem={({ item }) => (
           <Card
-            title={item.title}
-            subTitle={"$" + item.price}
-            image={item.image}
+            title={item.Title}
+            subTitle={item.Price + "  ﷼"}
+            imageUrl={item.Image_medium_url}
             onPress={() => navigation.navigate(routes.LISTING_DETAILS, item)}
           />
         )}

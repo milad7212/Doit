@@ -1,13 +1,13 @@
 import React from "react";
 import AppPicker from "../AppPicker";
 import { useFormikContext } from "formik";
-import { ErrorMessage } from ".";
+import { ErrorMessage } from "./ErrorMessage";
 
 function AppFormPicker({
   items,
   name,
   numberOfColumns,
-  PickerItemComponent, 
+  PickerItemComponent,
   width,
   placeholder,
 }) {
